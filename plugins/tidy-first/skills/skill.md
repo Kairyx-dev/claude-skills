@@ -78,3 +78,128 @@ Tidying 완료 후 원래 요청을 수행한다.
 | **First** | 먼저 tidy 후 변경 (기본값) | 대부분의 피처/버그픽스 작업 |
 
 목표는 "항상 tidy"가 아니라 **의식적인 결정**이다. Never/Later/After도 유효한 선택이다.
+
+---
+
+## Tidying 체크리스트
+
+모든 tidying은 순수 구조 개선 — 관찰 가능한 동작을 바꾸지 않는다.
+
+### 가독성
+
+| Tidying | 설명 |
+|---------|------|
+| **Guard Clauses** | 중첩 조건문을 조기 반환으로 평탄화 |
+| **Explaining Variable** | 복잡한 표현식을 이름 있는 변수로 추출 |
+| **Explaining Constant** | 매직 넘버/문자열을 명명된 상수로 교체 |
+| **Chunk Statements** | 관련 코드를 빈 줄로 그룹핑 |
+| **Order by Reading Order** | 코드를 읽히는 순서대로 재배치 |
+
+### 구조
+
+| Tidying | 설명 |
+|---------|------|
+| **Extract Helper** | 재사용 가능한 로직을 별도 함수로 분리 |
+| **Inline Helper** | 한 번만 쓰이는 불필요한 추상화 제거 |
+| **Dead Code Removal** | 도달 불가능하거나 미사용 코드 삭제 |
+| **Move Declaration and Initialization Together** | 변수 선언을 첫 사용 위치 바로 앞으로 이동 |
+
+### 응집도 & 결합도
+
+| Tidying | 설명 |
+|---------|------|
+| **Cohesion Ordering** | 함께 변하는 코드를 물리적으로 인접하게 이동 |
+| **Normalize Symmetries** | 같은 의도의 코드를 동일한 패턴으로 통일 |
+| **Explicit Parameters** | 암묵적 의존성을 명시적 파라미터로 교체 |
+
+---
+
+## 언어별 예시
+
+언어 무관 스킬. 아래 예시는 Kotlin과 TypeScript 기준.
+
+### Guard Clauses
+
+```kotlin
+// Before (Kotlin)
+fun process(user: User?) {
+    if (user != null) {
+        if (user.isActive) {
+            doWork(user)
+        }
+    }
+}
+
+// After
+fun process(user: User?) {
+    if (user == null) return
+    if (!user.isActive) return
+    doWork(user)
+}
+```
+
+```typescript
+// Before (TypeScript)
+function process(user: User | null) {
+    if (user !== null) {
+        if (user.isActive) {
+            doWork(user);
+        }
+    }
+}
+
+// After
+function process(user: User | null) {
+    if (user === null) return;
+    if (!user.isActive) return;
+    doWork(user);
+}
+```
+
+### Explaining Variable
+
+```kotlin
+// Before
+if (order.items.sumOf { it.price } > 100_000 && order.customer.tier == Tier.PREMIUM) {
+    applyDiscount(order)
+}
+
+// After
+val totalPrice = order.items.sumOf { it.price }
+val isPremiumCustomer = order.customer.tier == Tier.PREMIUM
+if (totalPrice > 100_000 && isPremiumCustomer) {
+    applyDiscount(order)
+}
+```
+
+### Cohesion Ordering
+
+```typescript
+// Before — 관련 함수가 흩어져 있음
+function calculateTotal() { ... }
+function formatDate() { ... }
+function applyDiscount() { ... }
+function parseDate() { ... }
+
+// After — 날짜 함수끼리, 가격 함수끼리
+function calculateTotal() { ... }
+function applyDiscount() { ... }
+function formatDate() { ... }
+function parseDate() { ... }
+```
+
+---
+
+## 제약 사항
+
+- **Structural change와 behavioral change를 한 단계에서 혼합하지 않는다**
+- **한 번에 하나의 tidying** — 별도 커밋 없이 여러 tidying을 묶지 않는다
+- **Tidy gate는 모든 코드 수정에 적용** — 작은 수정도 포함
+- **Structural 요청은 Gate 건너뜀** — 이미 tidying 중이다
+- **After/Never/Later는 유효한 선택** — 목표는 의식적 결정이지 항상 tidying이 아니다
+
+## 범위 외
+
+- 성능 최적화 (부하 조건에서 관찰 가능한 동작이 바뀔 수 있음)
+- 테스트 리팩토링 (별도 관심사)
+- 의존성/아키텍처 재구조화 (단일 tidying에 비해 너무 큰 범위)
