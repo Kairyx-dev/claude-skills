@@ -2,5 +2,6 @@
 .idea
 .serena/**
 
+**/docs/plans
 docs/superpowers/**
 .claude/.worktrees/**
