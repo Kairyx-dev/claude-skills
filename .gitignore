@@ -1,2 +1,5 @@
 ### IntelliJ IDEA ###
 .idea
+.serena/**
+
+docs/superpowers/**

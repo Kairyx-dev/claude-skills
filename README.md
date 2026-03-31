@@ -6,7 +6,7 @@ A collection of Claude Code plugins and skills.
 
 ## Skills
 
-### [setup-agents](skills/setup-agents/skill.md)
+### [setup-agents](plugins/setup-agents/skills/skill.md)
 
 Generates a complete multi-agent pipeline for any project.
 
@@ -32,7 +32,7 @@ Given a project description or directory path, it produces 4 specialized agents 
 /setup-agents <project description or directory path>
 ```
 
-See [setup-agents documentation](skills/setup-agents/skill.md) for details.
+See [setup-agents documentation](plugins/setup-agents/skills/skill.md) for details.
 
 ---
 
