@@ -1,0 +1,10 @@
+{
+  "name": "setup-agents",
+  "version": "0.0.1",
+  "description": "setup claude sub agents",
+  "author": {
+    "name": "Kairyx",
+    "email": "rhkstn0303@naver.com",
+    "url": "https://kairyx-dev.github.io"
+  }
+}
