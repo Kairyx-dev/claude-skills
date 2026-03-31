@@ -24,17 +24,18 @@ claude-skills/
 │       └── <branch-name>/
 ├── .claude-plugin/
 │   └── marketplace.json               # Plugin registry — lists all plugins in this repo
-├── plugins/                           # One subdirectory per plugin
-│   ├── <plugin-name>/
-│   │   ├── .claude-plugin/
-│   │   │   └── plugin.json            # Plugin metadata (name, version, author)
-│   │   ├── skills/
-│   │   │   └── skill.md               # Skill content (frontmatter + instructions)
-│   │   └── docs/                      # Plugin-level documentation (optional)
-│   │       ├── decisions/             # MADR architecture decision records
-│   │       │   └── NNNN-<title>.md
-│   │       └── plans/                 # Implementation plans
-│   │           └── YYYY-MM-DD-<topic>.md
+├── plugins/
+│   └── kairyx-skills/
+│       ├── .claude-plugin/
+│       │   └── plugin.json
+│       └── skills/
+│           ├── setup-agents/
+│           │   └── skill.md
+│           └── tidy-first/
+│               ├── skill.md
+│               └── docs/
+│                   ├── decisions/
+│                   └── plans/
 ├── docs/
 │   └── superpowers/                   # Superpowers workflow docs (gitignored)
 │       ├── specs/                     # Design specs from brainstorming
@@ -48,17 +49,16 @@ claude-skills/
 | File | Purpose |
 |------|---------|
 | `.claude-plugin/marketplace.json` | Registers all plugins; consumed by the Superpowers plugin loader |
-| `plugins/<name>/.claude-plugin/plugin.json` | Per-plugin metadata: name, version, description, author |
-| `plugins/<name>/skills/skill.md` | Skill definition: YAML frontmatter + markdown instructions |
+| `plugins/kairyx-skills/.claude-plugin/plugin.json` | Per-plugin metadata: name, version, description, author |
+| `plugins/kairyx-skills/skills/<skill-name>/skill.md` | Skill definition: YAML frontmatter + markdown instructions |
 
 ---
 
-## Adding a New Plugin
+## Adding a New Skill
 
-1. Create `plugins/<plugin-name>/` directory
-2. Add `.claude-plugin/plugin.json` with name, version, description, author
-3. Add `skills/skill.md` with frontmatter (`name`, `description`, `user-invocable`) and instructions
-4. Register the plugin in `.claude-plugin/marketplace.json`
+1. Create `plugins/kairyx-skills/skills/<skill-name>/` directory
+2. Add `skill.md` with frontmatter (`name`, `description`, `user-invocable`) and instructions
+3. No changes needed to marketplace.json for adding skills within the existing plugin
 
 ### skill.md Frontmatter
 
