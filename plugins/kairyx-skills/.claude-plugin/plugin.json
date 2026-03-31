@@ -1,7 +1,7 @@
 {
-  "name": "setup-agents",
-  "version": "0.0.1",
-  "description": "setup claude sub agents",
+  "name": "kairyx-skills",
+  "version": "1.0.0",
+  "description": "A collection of Claude Code skills by Kairyx-dev.",
   "author": {
     "name": "Kairyx",
     "email": "rhkstn0303@naver.com",

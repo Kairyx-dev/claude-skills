@@ -6,7 +6,7 @@ A collection of Claude Code plugins and skills.
 
 ## Plugins
 
-### [setup-agents](plugins/setup-agents/skills/skill.md)
+### [setup-agents](plugins/kairyx-skills/skills/setup-agents/skill.md)
 
 Generates a complete multi-agent pipeline for any project.
 
@@ -32,11 +32,11 @@ Given a project description or directory path, it produces 4 specialized agents 
 /setup-agents <project description or directory path>
 ```
 
-See [setup-agents documentation](plugins/setup-agents/skills/skill.md) for details.
+See [setup-agents documentation](plugins/kairyx-skills/skills/setup-agents/skill.md) for details.
 
 ---
 
-### [tidy-first](plugins/tidy-first/skills/skill.md)
+### [tidy-first](plugins/kairyx-skills/skills/tidy-first/skill.md)
 
 Kent Beck의 "Tidy First?" 방법론을 구현한 rigid process 스킬.
 
@@ -69,7 +69,7 @@ Behavioral Change — 원래 요청 수행
 /tidy-first <설명>
 ```
 
-See [tidy-first documentation](plugins/tidy-first/skills/skill.md) for details.
+See [tidy-first documentation](plugins/kairyx-skills/skills/tidy-first/skill.md) for details.
 
 ---
 
@@ -81,7 +81,7 @@ Install the plugin from the marketplace or add this repository as a plugin sourc
 
 ### Manual
 
-Copy the desired skill file from `plugins/<plugin-name>/skills/skill.md` into your Claude Code skills directory.
+Copy the desired skill file from `plugins/kairyx-skills/skills/<skill-name>/skill.md` into your Claude Code skills directory.
 
 ---
 
