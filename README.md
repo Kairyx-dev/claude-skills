@@ -4,7 +4,7 @@ A collection of Claude Code plugins and skills.
 
 ---
 
-## Skills
+## Plugins
 
 ### [setup-agents](plugins/setup-agents/skills/skill.md)
 
@@ -36,6 +36,43 @@ See [setup-agents documentation](plugins/setup-agents/skills/skill.md) for detai
 
 ---
 
+### [tidy-first](plugins/tidy-first/skills/skill.md)
+
+Kent Beck의 "Tidy First?" 방법론을 구현한 rigid process 스킬.
+
+모든 코드 수정 전 **Tidy Gate**를 통과하여 structural change와 behavioral change를 항상 분리한다. 명시적 호출(`/tidy-first`)과 코드 작업 시 자동 감지 둘 다 지원한다.
+
+**Tidy Gate — 4단계 프로세스:**
+```
+[코드 수정 요청]
+    ↓
+Analyze  — behavioral change인가, structural change인가?
+    ↓
+Assess   — 3가지 질문으로 tidying 필요성 판단
+    ↓ (필요한 경우)
+Tidy     — 12개 체크리스트에서 structural tidying 수행
+    ↓
+Behavioral Change — 원래 요청 수행
+```
+
+**타이밍 프레임워크:** Never / Later / After / **First** (기본값)
+
+**Tidying 체크리스트 (12개):**
+- 가독성: Guard Clauses, Explaining Variable, Explaining Constant, Chunk Statements, Order by Reading Order
+- 구조: Extract Helper, Inline Helper, Dead Code Removal, Move Declaration and Initialization Together
+- 응집도: Cohesion Ordering, Normalize Symmetries, Explicit Parameters
+
+**Usage:**
+```
+/tidy-first
+/tidy-first <파일명>
+/tidy-first <설명>
+```
+
+See [tidy-first documentation](plugins/tidy-first/skills/skill.md) for details.
+
+---
+
 ## Installation
 
 ### Via Claude Code Superpowers
@@ -44,7 +81,7 @@ Install the plugin from the marketplace or add this repository as a plugin sourc
 
 ### Manual
 
-Copy the desired skill file from `skills/<skill-name>/skill.md` into your Claude Code skills directory, and the corresponding file from `commands/` into `.claude/commands/`.
+Copy the desired skill file from `plugins/<plugin-name>/skills/skill.md` into your Claude Code skills directory.
 
 ---
 
