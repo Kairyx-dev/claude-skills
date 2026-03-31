@@ -1,7 +1,7 @@
 {
   "name": "tidy-first",
   "version": "0.1.0",
-  "description": "Kent Beck의 Tidy First? 방법론을 구현한 rigid process 스킬. 모든 코드 수정 전 Tidy Gate를 통과하여 structural change와 behavioral change를 분리한다.",
+  "description": "Rigid process skill implementing Kent Beck's Tidy First? methodology — separates structural and behavioral changes via a Tidy Gate before every code modification.",
   "author": {
     "name": "Kairyx",
     "email": "rhkstn0303@naver.com",
