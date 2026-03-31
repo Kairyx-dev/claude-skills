@@ -6,16 +6,10 @@
   },
   "plugins": [
     {
-      "name": "setup-agents",
-      "source": "./plugins/setup-agents",
+      "name": "kairyx-skills",
+      "source": "./plugins/kairyx-skills",
       "version": "1.0.0",
-      "description": "Setup subagents for claude"
-    },
-    {
-      "name": "tidy-first",
-      "source": "./plugins/tidy-first",
-      "version": "0.1.0",
-      "description": "Kent Beck의 Tidy First? 방법론을 구현한 rigid process 스킬."
+      "description": "A collection of Claude Code skills by Kairyx-dev."
     }
   ]
 }
